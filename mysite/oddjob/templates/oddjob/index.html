@@ -6,16 +6,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-
+<h1 style="color:red;">DUE TODAY</h1>
 {% if jobList %}
     {% for job in jobList %}
-		<div class="card">
-			<div class="container">
-				<a href="/oddjob/{{ job.id }}/">{{ job.title }}</a>
-				<p>{{job.description}}</p>
+		{% now "Y-m-d" as todays_date %}
+		{% if todays_date >= job.dateDue|date:"Y-m-d" %}
+			<div class="card" onclick="location.href='/oddjob/{{ job.id }}/';">
+				<div class="container">
+					<a href="/oddjob/{{ job.id }}/">{{ job.title }}</a>
+					<p>{{job.description}}</p>
+				</div>
 			</div>
-		</div>
+		{% endif %}
     {% endfor %}
 {% endif %}
+<h1>TASKS NEEDED</h1>
+    {% for job in jobList %}
+		{% now "Y-m-d" as todays_date %}
+		{% if todays_date < job.dateDue|date:"Y-m-d" %}
+			<div class="card" onclick="location.href='/oddjob/{{ job.id }}/';">
+				<div class="container">
+					<a href="/oddjob/{{ job.id }}/">{{ job.title }}</a>
+					<p>{{job.description}}</p>
+				</div>
+			</div>
+		{% endif %}
+    {% endfor %}
 </body>
 </html>
