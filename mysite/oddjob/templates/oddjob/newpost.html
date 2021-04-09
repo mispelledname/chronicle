@@ -1,70 +1,86 @@
-<div class="dark-overlay">
-    <div class="pop-up">
-        <form method="POST" action="/oddjob/newpost">
-            {% csrf_token %}
+<html>
+{% load static %}
 
-            <!-- title -->
-            <div class='input-title'><label for="title">Title</label></div>
-            <div class='input-subtitle'>What task will your wocoerker be completing? E.g. Filling in paperwork.</div>
-            <input id="title" type="text" name="title" >
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'oddjob/style.css' %}">
+    <title>Add Job</title>
+</head>
 
-            <!-- description -->
-            <div class='input-title'><label for="description">Description: </label></div>
-            <div class='input-subtitle'>Elaborate on the task instructions.</div>
-            <!-- <input id="description" type="text" name="description" > -->
-            <textarea name="description" id="description" rows="9"></textarea>
+<body>
+    <div class="dark-overlay">
+        <div class="pop-up">
+            <form method="POST" action="/oddjob/newpost">
+                {% csrf_token %}
 
-            <!-- estimated duration -->
-            <div class='form-columns'>
-                <div class='col-1'>
-                    <div class='input-title'><label for="duration">Duration: </label></div>
-                    <div class='input-subtitle'>How long do you think this task will take per person? E.g. 0.25 hours.</div>
+                <!-- title -->
+                <div class='input-title'><label for="title">Title</label></div>
+                <div class='input-subtitle'>What task will your coworker be completing? E.g. Filling in paperwork.
                 </div>
-                <div>
-                    <div class='col-2'>
-                        <input class="right-col-input" id="duration" type="time" name="duration" value = "01:00" min='01:00' max= '12:00'>
+                <input id="title" type="text" name="title">
+
+                <!-- description -->
+                <div class='input-title'><label for="description">Description: </label></div>
+                <div class='input-subtitle'>Elaborate on the task instructions.</div>
+                <!-- <input id="description" type="text" name="description" > -->
+                <textarea name="description" id="description" rows="9"></textarea>
+
+                <!-- estimated duration -->
+                <div class='form-columns'>
+                    <div class='col-1'>
+                        <div class='input-title'><label for="duration">Duration: </label></div>
+                        <div class='input-subtitle'>How long do you think this task will take per person? E.g. 0.25
+                            hours.</div>
+                    </div>
+                    <div>
+                        <div class='col-2'>
+                            <input class="right-col-input" id="duration" type="time" name="duration" value="01:00"
+                                min='01:00' max='12:00'>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- help required -->
-            <div class='form-columns'>
-                <div class='col-1'>
-                    <div class='input-title'><label for="numHelpers">Number of helpers: </label></div>
-                    <div class='input-subtitle'>How many people would you like to give this task to?</div>
-                </div>
-                <div>
-                    <div class='col-2'>
-                        <input id="numHelpers" type="number" name="numHelpers" >
+
+                <!-- help required -->
+                <div class='form-columns'>
+                    <div class='col-1'>
+                        <div class='input-title'><label for="numHelpers">Number of helpers: </label></div>
+                        <div class='input-subtitle'>How many people would you like to give this task to?</div>
+                    </div>
+                    <div>
+                        <div class='col-2'>
+                            <input id="numHelpers" type="number" name="numHelpers">
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            
-            <!-- deadline -->
-            <div class='form-columns'>
-                <div class='col-1'>
-                    <div class='input-title'><label for="datedue">Deadline</label></div>
-                    <div class='input-subtitle'>When does this task have to be completed by?</div>
-                </div>
-                <div>
-                    <div class='col-2'>
-                        <input id="datedue" type="datetime-local" name="datedue" value="2021-04-09T16:00" >
+
+
+                <!-- deadline -->
+                <div class='form-columns'>
+                    <div class='col-1'>
+                        <div class='input-title'><label for="datedue">Deadline</label></div>
+                        <div class='input-subtitle'>When does this task have to be completed by?</div>
+                    </div>
+                    <div>
+                        <div class='col-2'>
+                            <input id="datedue" type="datetime-local" name="datedue" value="2021-04-09T16:00">
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- post job button -->
-            <input type="submit" value="Post Job">
-        </form>
+
+                <!-- post job button -->
+                <input type="submit" value="Post Job">
+            </form>
+        </div>
     </div>
-</div>
+</body>
+</html>
+
 <style>
     body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-size: 16px;
         color: #1A1A1A, 100%;
     }
+
     input {
         width: 100%;
         padding: 10px;
@@ -72,15 +88,18 @@
         border-radius: 5px;
         color: 1A1A1A, 100%;
     }
+
     input:focus {
         outline: none;
     }
+
     input[type=submit] {
         background: #1A1A1A;
         border-radius: 5px;
         color: white;
         margin-top: 30px;
     }
+
     textarea {
         width: 100%;
         border: none;
@@ -89,18 +108,22 @@
         border-radius: 5px;
         color: 1A1A1A, 100%;
     }
+
     textarea:focus {
         outline: none;
     }
+
     .dark-overlay {
         position: fixed;
         width: 100%;
         height: 100%;
         left: 0;
         top: 0;
-        background: rgba(26, 26, 26, 0.75);;
+        background: rgba(26, 26, 26, 0.75);
+        ;
         z-index: 10;
     }
+
     .pop-up {
         background: #E8ECF2;
         border-radius: 5px;
@@ -111,20 +134,24 @@
         padding: 24px;
         width: 60%;
     }
+
     .input-title {
         font-weight: 700;
         color: #154D59;
         padding-top: 20px;
         padding-bottom: 10px;
     }
+
     .input-subtitle {
         color: #154D59;
         font-size: 13px;
         padding-bottom: 10px;
     }
+
     .form-columns {
         column-count: 2;
     }
+
     .col-2 {
         height: 100%;
         position: relative;
