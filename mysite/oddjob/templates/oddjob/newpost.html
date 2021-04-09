@@ -1,0 +1,14 @@
+<form method="POST" action="/oddjob/newpost">
+    {% csrf_token %}
+    <label for="title">Title: </label>
+    <input id="title" type="text" name="title" >
+    <label for="description">Description: </label>
+    <input id="description" type="text" name="description" >
+    <label for="datedue">Deadline: </label>
+    <input id="datedue" type="datetime-local" name="datedue" value="2021-04-09T16:00" >
+    <label for="numHelpers">Number of helpers: </label>
+    <input id="numHelpers" type="number" name="numHelpers" >
+    <label for="duration">Duration: </label>
+    <input id="duration" type="time" name="duration" value = "01:00" min='01:00' max= '12:00'>
+    <input type="submit" value="OK">
+</form>
