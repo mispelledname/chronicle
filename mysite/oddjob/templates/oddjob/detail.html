@@ -1,3 +1,16 @@
 <ul>
-    <li><a href="/oddjob/{{ job.id }}/">{{ job.description }}</a></li>
+	<head>
+		<title>{{ job.title }}</title>
+		<h1>Title: {{ job.title }}</h1>
+	</head>
+	<body>
+		<p>Description: {{ job.description }} <br>
+		Date Posted: {{ job.datePosted }} <br>
+	    Deadline for Response: {{ job.dateDue }} <br>
+		People Required: {{ job.numHelperRequested }} <br>
+		Task duration: {{ job.taskDuration }} <br>
+		Requester ID: {{ job.originUser_id }}
+		</p>
+
+	</body>		
 </ul>

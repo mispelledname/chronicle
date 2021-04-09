@@ -7,7 +7,9 @@ from .models import Job, User, Tag
 import datetime
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the oddjob index.")
+    jobList = Job.objects.order_by('-datePosted')
+    context = {'jobList':jobList}
+    return render(request,'oddjob/index.html',context)
 
 def detail(request, job_id):
     try:
@@ -31,3 +33,4 @@ def post(request):
         numHelperRequested = request.POST.get('numHelpers'))
         job.save()
     return render(request, 'oddjob/newpost.html')
+
