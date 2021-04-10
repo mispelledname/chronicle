@@ -11,5 +11,6 @@ urlpatterns = [
     path('register', views.register_view, name = 'register_view'),
     path('logout', views.logout_view, name='logout_view'),
     path('me', views.self_view, name="self_view"),
-    path('accept/<int:job_id>/<int:user_id>', views.accept_job, name='accept') 
+    path('accept/<int:job_id>/<int:user_id>', views.accept_job, name='accept') ,
+    path('mytasks', views.mytasks, name = 'mytasks')
 ]
