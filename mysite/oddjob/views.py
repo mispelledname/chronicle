@@ -1,14 +1,14 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 
 # Create your views here.
-from django.http import HttpResponse,Http404
+from django.http import HttpResponse,Http404, HttpResponseRedirect
 
 from .models import Job, UserProfile, Tag
 import datetime
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+
 
 
 def index(request):
@@ -28,20 +28,29 @@ def user(request, xid):
     return render(request, 'oddjob/user.html', context={'user':user})
 
 def post(request):
-    if request.method == 'POST':
-        [h, m] = list(map(int, request.POST.get('duration').split(':')))
-        job = Job(title=request.POST.get('title'),
-        description=request.POST.get('description'),
-        taskDuration = datetime.timedelta(hours=h, minutes=m ),
-        datePosted = datetime.datetime.now(), 
-        dateDue = request.POST.get('datedue'),
-        numHelperRequested = request.POST.get('numHelpers'))
-        job.save()
-    return render(request, 'oddjob/newpost.html')
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+            return render(request, 'oddjob/newpost.html')
+        elif request.method == 'POST':
+            [h, m] = list(map(int, request.POST.get('duration').split(':')))
+            job = Job(title=request.POST.get('title'),
+            description=request.POST.get('description'),
+            taskDuration = datetime.timedelta(hours=h, minutes=m ),
+            datePosted = datetime.datetime.now(), 
+            dateDue = request.POST.get('datedue'),
+            numHelperRequested = request.POST.get('numHelpers'),
+            originUser=request.user.userprofile)
+            job.save()
+            # return render(request, 'oddjob/newpost.html')
+            return redirect('/oddjob')
+    else:
+        return HttpResponseRedirect('/oddjob/login')
+    
 
 def login_view(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect("")
+        return redirect('/oddjob')
+        #return HttpResponseRedirect("")
     else:
         if request.method == 'GET':
             return render(request, 'oddjob/login.html', {'req': request})
@@ -60,7 +69,8 @@ def login_view(request):
 
 def register_view(request):
     if request.user.is_authenticated:
-        return HttpResponseRedirect("")
+        return redirect('/oddjob')
+        #return HttpResponseRedirect("")
     else:
         if request.method == 'GET':
             return render(request, 'oddjob/register.html', {'req': request})
