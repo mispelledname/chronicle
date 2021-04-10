@@ -3,6 +3,72 @@
 {% block title %}Odd Jobs Home{% endblock %}
 
 {% block main-content %}
+
+<div id="dark-overlay">
+	<div class="pop-up">
+		<form method="POST" action="/oddjob/newpost">
+			{% csrf_token %}
+
+			<!-- title -->
+			<div class='input-title'><label for="title">Title</label></div>
+			<div class='input-subtitle'>What task will your coworker be completing? E.g. Filling in paperwork.</div>
+			<input id="title" type="text" name="title">
+
+			<!-- description -->
+			<div class='input-title'><label for="description">Description: </label></div>
+			<div class='input-subtitle'>Elaborate on the task instructions.</div>
+			<!-- <input id="description" type="text" name="description" > -->
+			<textarea name="description" id="description" rows="9"></textarea>
+
+			<!-- estimated duration -->
+			<div class='form-columns'>
+				<div class='col-1'>
+					<div class='input-title'><label for="duration">Duration: </label></div>
+					<div class='input-subtitle'>How long do you think this task will take per person? E.g. 0.25
+						hours.</div>
+				</div>
+				<div>
+					<div class='col-2'>
+						<input class="right-col-input" id="duration" type="time" name="duration" value="01:00"
+							min='01:00' max='12:00'>
+					</div>
+				</div>
+			</div>
+
+			<!-- help required -->
+			<div class='form-columns'>
+				<div class='col-1'>
+					<div class='input-title'><label for="numHelpers">Number of helpers: </label></div>
+					<div class='input-subtitle'>How many people would you like to give this task to?</div>
+				</div>
+				<div>
+					<div class='col-2'>
+						<input id="numHelpers" type="number" name="numHelpers">
+					</div>
+				</div>
+			</div>
+
+
+			<!-- deadline -->
+			<div class='form-columns'>
+				<div class='col-1'>
+					<div class='input-title'><label for="datedue">Deadline</label></div>
+					<div class='input-subtitle'>When does this task have to be completed by?</div>
+				</div>
+				<div>
+					<div class='col-2'>
+						<input id="datedue" type="datetime-local" name="datedue" value="2021-04-09T16:00">
+					</div>
+				</div>
+			</div>
+
+			<!-- post job button -->
+			<input type="submit" value="Post Job">
+		</form>
+	</div>
+</div>
+
+<!-- top bar with search bar and new job button  -->
 <div class='top-bar'>
 	<div class='left-align'>
 		<div class='search-button'>
@@ -10,28 +76,105 @@
 		</div>
 	</div>
 	<div class='right-align'>
-		<a href='/oddjob/newpost'>
-			<div class='new-job-button'>
+		<!-- <a href='/oddjob/newpost'> -->
+			<div class='new-job-button' onclick='addPostCallback()'>
 				+ New Job
 			</div>
-		</a>
+		<!-- </a> -->
 	</div>
 </div>
-<h1 style="color:red;">DUE TODAY</h1>
-{% if jobList %}
-{% for job in jobList %}
-{% now "Y-m-d" as todays_date %}
-{% if todays_date >= job.dateDue|date:"Y-m-d" %}
-<div class="card" style="background-color:White" onclick="location.href='/oddjob/{{ job.id }}/';">
-	<div class="container">
-		<h2>{{ job.title }}</h2>
-		<p>{{job.description}}</p>
+
+<!-- Greeting -->
+<div class='greeting-bar'>
+	<h1>Hello, {{userName}}</h1>
+	<p>If you’re free, why not choose a task and help a co-worker out!</p>
+</div>
+
+<!-- Card Decks-->
+<div class='deck-content'>
+	<!-- Urgent tasks -->
+	<div class='task-deck'>
+		<div class='input-title'>
+			Urgent
+		</div>
+		{% if jobList %}
+		{% for job in jobList %}
+		{% now "Y-m-d" as todays_date %}
+		{% if todays_date >= job.dateDue|date:"Y-m-d" %}
+		<div class="card" style="background-color:#F2ECFD;" onclick="location.href='/oddjob/{{ job.id }}/';">
+			<div class="container">
+				<div class='card-title'>{{job.title}}</div>
+				<div class='card-info'>Due at: {{job.dateDue}}</div>
+				<div class='card-info'>Estimated time: {{job.taskDuration}}</div>
+			</div>
+		</div>
+		{% endif %}
+		{% endfor %}
+		{% endif %}
+	</div>
+	<!-- Tasks in legal -->
+	<div class='task-deck'>
+		<div class='input-title'>
+			Legal
+		</div>
+		{% if jobList %}
+		{% for job in jobList %}
+		{% now "Y-m-d" as todays_date %}
+		{% if todays_date >= job.dateDue|date:"Y-m-d" %}
+		<div class="card" style="background-color:#F2ECFD;" onclick="location.href='/oddjob/{{ job.id }}/';">
+			<div class="container">
+				<div class='card-title'>{{job.title}}</div>
+				<div class='card-info'>Due at: {{job.dateDue}}</div>
+				<div class='card-info'>Estimated time: {{job.taskDuration}}</div>
+			</div>
+		</div>
+		{% endif %}
+		{% endfor %}
+		{% endif %}
+	</div>
+	<!-- tasks in sales -->
+	<div class='task-deck'>
+		<div class='input-title'>
+			Sales
+		</div>
+		{% if jobList %}
+		{% for job in jobList %}
+		{% now "Y-m-d" as todays_date %}
+		{% if todays_date >= job.dateDue|date:"Y-m-d" %}
+		<div class="card" style="background-color:#F2ECFD;" onclick="location.href='/oddjob/{{ job.id }}/';">
+			<div class="container">
+				<div class='card-title'>{{job.title}}</div>
+				<div class='card-info'>Due at: {{job.dateDue}}</div>
+				<div class='card-info'>Estimated time: {{job.taskDuration}}</div>
+			</div>
+		</div>
+		{% endif %}
+		{% endfor %}
+		{% endif %}
+	</div>
+	<!-- tasks in analytics -->
+	<div class='task-deck'>
+		<div class='input-title'>
+			Analytics
+		</div>
+		{% if jobList %}
+		{% for job in jobList %}
+		{% now "Y-m-d" as todays_date %}
+		{% if todays_date >= job.dateDue|date:"Y-m-d" %}
+		<div class="card" style="background-color:#F2ECFD;" onclick="location.href='/oddjob/{{ job.id }}/';">
+			<div class="container">
+				<div class='card-title'>{{job.title}}</div>
+				<div class='card-info'>Due at: {{job.dateDue}}</div>
+				<div class='card-info'>Estimated time: {{job.taskDuration}}</div>
+			</div>
+		</div>
+		{% endif %}
+		{% endfor %}
+		{% endif %}
 	</div>
 </div>
-{% endif %}
-{% endfor %}
-{% endif %}
-<h1>TASKS NEEDED</h1>
+
+<!-- <h1>TASKS NEEDED</h1>
 {% for job in jobList %}
 {% now "Y-m-d" as todays_date %}
 {% if todays_date < job.dateDue|date:"Y-m-d" %} <div class="card" style="background-color:White"
@@ -42,8 +185,5 @@
 	</div>
 </div>
 {% endif %}
-{% endfor %}
+{% endfor %} -->
 {% endblock %}
-
-<style>
-</style>
