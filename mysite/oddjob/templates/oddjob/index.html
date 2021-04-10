@@ -25,6 +25,14 @@
 		</div>
 	</div>
 	<div class='main-content'>
+		<div class='top-bar'>
+			<div class='search-button'></div>
+			<a href='/oddjob/newpost'>
+				<div class='new-job-button'>
+					+ New Job
+				</div>
+			</a>
+		</div>
 		<h1 style="color:red;">DUE TODAY</h1>
 		{% if jobList %}
 		{% for job in jobList %}
@@ -44,13 +52,13 @@
 		{% now "Y-m-d" as todays_date %}
 		{% if todays_date < job.dateDue|date:"Y-m-d" %} <div class="card" style="background-color:White"
 			onclick="location.href='/oddjob/{{ job.id }}/';">
-		<div class="container">
-			<h2>{{ job.title }}</h2>
-			<p>{{job.description}}</p>
-		</div>
-		</div>
-		{% endif %}
-		{% endfor %}
+			<div class="container">
+				<h2>{{ job.title }}</h2>
+				<p>{{job.description}}</p>
+			</div>
+	</div>
+	{% endif %}
+	{% endfor %}
 	</div>
 </body>
 
@@ -62,17 +70,20 @@
 		padding: 0;
 		font-size: 100%;
 	}
+
 	.left-content {
 		width: 20%;
 		float: left;
 		height: 100%;
 		background-color: white;
 	}
-	nav ul{
+
+	nav ul {
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
+
 	nav li {
 		margin: 20px 20px;
 		padding: 10px 0;
@@ -80,21 +91,26 @@
 		align-content: center;
 		text-align: center;
 	}
+
 	nav li a {
 		color: #1A1A1A;
 		text-decoration: none;
 	}
+
 	nav li:hover {
 		background-color: #E8ECF2;
 	}
+
 	#selected-page {
 		color: white;
 		background-color: #1A1A1A;
 	}
+
 	#selected-page a {
 		color: white;
 		background-color: #1A1A1A;
 	}
+
 	.main-content {
 		float: left;
 		width: 80%;
