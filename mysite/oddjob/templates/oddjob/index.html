@@ -6,65 +6,66 @@
 
 <div id="dark-overlay">
 	<div class="pop-up">
-		<form method="POST" action="/oddjob/newpost">
-			{% csrf_token %}
-
-			<!-- title -->
-			<div class='input-title'><label for="title">Title</label></div>
-			<div class='input-subtitle'>What task will your coworker be completing? E.g. Filling in paperwork.</div>
-			<input id="title" type="text" name="title">
-
-			<!-- description -->
-			<div class='input-title'><label for="description">Description: </label></div>
-			<div class='input-subtitle'>Elaborate on the task instructions.</div>
-			<!-- <input id="description" type="text" name="description" > -->
-			<textarea name="description" id="description" rows="9"></textarea>
-
-			<!-- estimated duration -->
-			<div class='form-columns'>
-				<div class='col-1'>
-					<div class='input-title'><label for="duration">Duration: </label></div>
-					<div class='input-subtitle'>How long do you think this task will take per person? E.g. 0.25
-						hours.</div>
-				</div>
-				<div>
-					<div class='col-2'>
-						<input class="right-col-input" id="duration" type="time" name="duration" value="01:00"
-							min='01:00' max='12:00'>
+		<div class='pop-up-content'>
+			<form method="POST" action="/oddjob/newpost">
+				{% csrf_token %}
+	
+				<!-- title -->
+				<div class='input-title'><label for="title">Title</label></div>
+				<div class='input-subtitle'>What task will your coworker be completing? E.g. Filling in paperwork.</div>
+				<input id="title" type="text" name="title">
+	
+				<!-- description -->
+				<div class='input-title'><label for="description">Description: </label></div>
+				<div class='input-subtitle'>Elaborate on the task instructions.</div>
+				<!-- <input id="description" type="text" name="description" > -->
+				<textarea name="description" id="description" rows="9"></textarea>
+	
+				<!-- estimated duration -->
+				<div class='form-columns'>
+					<div class='col-1'>
+						<div class='input-title'><label for="duration">Duration: </label></div>
+						<div class='input-subtitle'>How long do you think this task will take per person? E.g. 0.25
+							hours.</div>
+					</div>
+					<div>
+						<div class='col-2'>
+							<input class="right-col-input" id="duration" type="time" name="duration" value="01:00"
+								min='01:00' max='12:00'>
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<!-- help required -->
-			<div class='form-columns'>
-				<div class='col-1'>
-					<div class='input-title'><label for="numHelpers">Number of helpers: </label></div>
-					<div class='input-subtitle'>How many people would you like to give this task to?</div>
-				</div>
-				<div>
-					<div class='col-2'>
-						<input id="numHelpers" type="number" name="numHelpers">
+	
+				<!-- help required -->
+				<div class='form-columns'>
+					<div class='col-1'>
+						<div class='input-title'><label for="numHelpers">Number of helpers: </label></div>
+						<div class='input-subtitle'>How many people would you like to give this task to?</div>
+					</div>
+					<div>
+						<div class='col-2'>
+							<input id="numHelpers" type="number" name="numHelpers">
+						</div>
 					</div>
 				</div>
-			</div>
-
-
-			<!-- deadline -->
-			<div class='form-columns'>
-				<div class='col-1'>
-					<div class='input-title'><label for="datedue">Deadline</label></div>
-					<div class='input-subtitle'>When does this task have to be completed by?</div>
-				</div>
-				<div>
-					<div class='col-2'>
-						<input id="datedue" type="datetime-local" name="datedue" value="2021-04-09T16:00">
+	
+				<!-- deadline -->
+				<div class='form-columns'>
+					<div class='col-1'>
+						<div class='input-title'><label for="datedue">Deadline</label></div>
+						<div class='input-subtitle'>When does this task have to be completed by?</div>
+					</div>
+					<div>
+						<div class='col-2'>
+							<input id="datedue" type="datetime-local" name="datedue" value="2021-04-09T16:00">
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<!-- post job button -->
-			<input type="submit" value="Post Job">
-		</form>
+	
+				<!-- post job button -->
+				<input type="submit" value="Post Job">
+			</form>
+		</div>
 	</div>
 </div>
 
