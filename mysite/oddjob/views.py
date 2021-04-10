@@ -13,7 +13,8 @@ from django.contrib.auth.models import User
 
 def index(request):
     jobList = Job.objects.order_by('-datePosted')
-    context = {'jobList':jobList}
+    # TODO: add user name
+    context = {'jobList':jobList, 'userName': 'Admin'}
     return render(request,'oddjob/index.html',context)
 
 def detail(request, job_id):
