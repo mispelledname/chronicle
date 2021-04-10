@@ -4,6 +4,7 @@
   width: 30%;
   border-radius: 5px;
   display:inline-block;
+  margin-bottom: 30px;
 }
 
 .card:hover {

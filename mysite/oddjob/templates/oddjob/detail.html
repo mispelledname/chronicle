@@ -3,9 +3,11 @@
 <link rel="stylesheet" type="text/css" href="{% static 'oddjob/detailscreen.css' %}">
 	<head>
 		<title>{{ job.title }}</title>
-		<h1>Title: {{ job.title }}</h1>
 	</head>
-	<body>
+	<body style="background-color:#E8ECF2">
+	<div class="card" style="background-color:White">
+	<div class="container">
+		<h1>Title: {{ job.title }}</h1>
 		<p>Description: {{ job.description }} <br>
 		Date Posted: {{ job.datePosted }} <br>
 	    Deadline for Response: {{ job.dateDue }} <br>
@@ -14,12 +16,15 @@
 		Requester ID: {{ job.originUser_id }}
 		</p>
 		<button id="myBtn">Accept Job</button>
+		<p><br></p>
 		<div id="myModal" class="modal">
 			<div class="modal-content">
 			<span class="close">&times;</span>
 			<p>You have accepted this job. Please contact {{ job.originUser_id }} for more information</p>
 			</div>
 		</div>
+	</div>
+	</div>
 	</body>		
 	
 
