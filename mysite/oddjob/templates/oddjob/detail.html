@@ -1,4 +1,6 @@
-<ul>
+<html>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'oddjob/detailscreen.css' %}">
 	<head>
 		<title>{{ job.title }}</title>
 		<h1>Title: {{ job.title }}</h1>
@@ -11,6 +13,35 @@
 		Task duration: {{ job.taskDuration }} <br>
 		Requester ID: {{ job.originUser_id }}
 		</p>
-
+		<button id="myBtn">Accept Job</button>
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+			<span class="close">&times;</span>
+			<p>You have accepted this job. Please contact {{ job.originUser_id }} for more information</p>
+			</div>
+		</div>
 	</body>		
-</ul>
+	
+
+
+	
+	<script>
+		var modal = document.getElementById("myModal");
+
+		var btn = document.getElementById("myBtn");
+
+		var span = document.getElementsByClassName("close")[0];
+
+		btn.onclick = function() {
+			modal.style.display = "block";
+		}
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script>
+</html>
