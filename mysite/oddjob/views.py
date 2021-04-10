@@ -18,7 +18,9 @@ def index(request):
 
 def detail(request, job_id):
     try:
-        context = {'job': Job.objects.get(id=job_id)}
+        job = Job.objects.get(id=job_id)
+        name_collab = " ".join([e.name for e in job.contributors.all()])
+        context = {'job': job, 'collab':name_collab, 'user_id':request.user.id}
     except:
         raise Http404("Job does not exist.")
     return render(request, 'oddjob/detail.html', context)
@@ -87,11 +89,14 @@ def register_view(request):
             login_user = authenticate(request, username=username, password=password)
             login(request, login_user)
 
-            return HttpResponseRedirect("")
+            return redirect('/oddjob')
+            #return HttpResponseRedirect("")
 
 def logout_view(request):
     if request.user.is_authenticated:
         logout(request)
+        return HttpResponseRedirect('/oddjob/login')
+    else:
         return HttpResponseRedirect('/oddjob/login')
 
 def self_view(request):
@@ -99,3 +104,9 @@ def self_view(request):
         return HttpResponseRedirect(f'user/{request.user.id}/')
     else:
         return HttpResponseRedirect('/oddjob.login')
+
+def accept_job(request, job_id, user_id):
+    user = get_object_or_404(User, id=user_id)
+    job = get_object_or_404(Job, id=job_id)
+    job.contributors.add(user.userprofile)
+    return redirect(f'/oddjob/{job_id}')

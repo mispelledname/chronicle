@@ -9,18 +9,19 @@
 	<div class="container">
 		<h1>Title: {{ job.title }}</h1>
 		<p>Description: {{ job.description }} <br>
+		Created by: {{job.originUser.name}} <br>
 		Date Posted: {{ job.datePosted }} <br>
 	    Deadline for Response: {{ job.dateDue }} <br>
 		People Required: {{ job.numHelperRequested }} <br>
 		Task duration: {{ job.taskDuration }} <br>
-		Requester ID: {{ job.originUser_id }}
+		Contributors: {{collab}}
 		</p>
 		<button id="myBtn">Accept Job</button>
 		<p><br></p>
 		<div id="myModal" class="modal">
 			<div class="modal-content">
 			<span class="close">&times;</span>
-			<p>You have accepted this job. Please contact {{ job.originUser_id }} for more information</p>
+			<p>You have accepted this job. Please contact {{job.originUser.name}} for more information</p>
 			</div>
 		</div>
 	</div>
