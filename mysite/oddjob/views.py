@@ -103,10 +103,18 @@ def self_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(f'user/{request.user.id}/')
     else:
-        return HttpResponseRedirect('/oddjob.login')
+        return redirect('oddjob/login')
 
 def accept_job(request, job_id, user_id):
     user = get_object_or_404(User, id=user_id)
     job = get_object_or_404(Job, id=job_id)
     job.contributors.add(user.userprofile)
     return redirect(f'/oddjob/{job_id}')
+
+def mytasks(request):
+    if request.user.is_authenticated:
+        my_creations = Job.objects.filter(originUser=request.user.userprofile)
+        contributions = Job.objects.filter(contributors=request.user.userprofile)
+        return render(request, 'oddjob/mytasks.html', {'myposts': my_creations, 'contributions': contributions})
+    else:
+        return redirect('/oddjob/login')
