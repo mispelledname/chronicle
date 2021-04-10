@@ -1,90 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- {% load static %}
+{% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'oddjob/style.css' %}"> -->
+<link rel="stylesheet" type="text/css" href="{% static 'oddjob/style.css' %}">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title%}Odd Jobs{% endblock %}</title>
 </head>
 
-<body style="background-color:#E8ECF2">
-	<div class='left-content'>
+<body style="background-color:#F2F5F9">
+    <div class='left-content'>
         {% block sidebar%}
-		<div class='logo'></div>
-		<nav>
-			<ul>
-				<li id='selected-page'><a href="">Home</a></li>
-				<li><a href="/oddjob/mytasks">My Tasks</a></li>
-				<li><a href="/oddjob/me">User Performance</a></li>
-				<li><a href="">Company Performance</a></li>
-				<li><a href="/oddjob/me">Profile Settings</a></li>
-			</ul>
-		</nav>
-		<div>
-			<a href="/oddjob/login">login</a>
-			<a href="/oddjob/register">register</a>
-			<a href="/oddjob/logout">logout</a>
-		</div>
+        <div class='logo'></div>
+        <nav>
+            <ul>
+                <li id='selected-page'><a href="">Home</a></li>
+                <li><a href="/oddjob/mytasks">My Tasks</a></li>
+                <li><a href="/oddjob/me">User Performance</a></li>
+                <li><a href="">Company Performance</a></li>
+                <li><a href="/oddjob/me">Profile Settings</a></li>
+            </ul>
+        </nav>
+        <div>
+            <a href="/oddjob/login">login</a>
+            <a href="/oddjob/register">register</a>
+            <a href="/oddjob/logout">logout</a>
+        </div>
         {% endblock %}
-	</div>
+    </div>
     <div class='main-content'>
         {% block main-content %}
         {% endblock %}
     </div>
 </body>
+
 </html>
 
 <style>
-	body {
-		margin: 0;
-		padding: 0;
-		font-size: 100%;
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 100%;
+    }
+
+    .left-content {
+        width: 20%;
+        float: left;
+        min-height: 100vh;
+        background-color: white;
+    }
+
+    nav ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    nav li {
+        margin: 20px 20px;
+        padding: 10px 0;
+        border-radius: 5px;
+        align-content: center;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    nav li a {
+        color: #1A1A1A;
+        text-decoration: none;
+    }
+
+    nav li:hover {
+        background-color: #E8ECF2;
+    }
+
+    #selected-page {
+        color: white;
+        background-color: #1A1A1A;
+    }
+
+    #selected-page a {
+        color: white;
+        background-color: #1A1A1A;
+    }
+
+    .main-content {
+        float: left;
+        width: 73%;
+        padding-top: 20px;
+        padding-left: 3.5%;
+        padding-right: 3.5%;
+    }
+
+    .top-bar {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
 	}
 
-	.left-content {
-		width: 20%;
-		float: left;
-		height: 100%;
-		background-color: white;
-	}
-
-	nav ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	nav li {
-		margin: 20px 20px;
-		padding: 10px 0;
-		border-radius: 5px;
-		align-content: center;
-		text-align: center;
-	}
-
-	nav li a {
-		color: #1A1A1A;
-		text-decoration: none;
-	}
-
-	nav li:hover {
-		background-color: #E8ECF2;
-	}
-
-	#selected-page {
-		color: white;
-		background-color: #1A1A1A;
-	}
-
-	#selected-page a {
-		color: white;
-		background-color: #1A1A1A;
-	}
-
-	.main-content {
-		float: left;
-		width: 80%;
-	}
+    .search-button {
+        background-color: white;
+        width: 60px;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 38px;
+        color: #1A1A1A;
+    }
+    .search-button:hover {
+        background-color: #E8ECF2;
+        color: #154D59;
+        cursor: pointer;
+    }
+    .new-job-button {
+        background-color: #1A1A1A;
+        padding: 10px 45px;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    .new-job-button:hover {
+        background-color: #154D59;
+    }
+    a {
+        text-decoration: none;
+    }
 </style>

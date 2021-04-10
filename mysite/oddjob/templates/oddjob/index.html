@@ -1,15 +1,21 @@
-{% extends "base.html" %}
+{% extends "oddjob/base.html" %}
 
 {% block title %}Odd Jobs Home{% endblock %}
 
 {% block main-content %}
 <div class='top-bar'>
-	<div class='search-button'></div>
-	<a href='/oddjob/newpost'>
-		<div class='new-job-button'>
-			+ New Job
+	<div class='left-align'>
+		<div class='search-button'>
+			<i class="fa fa-search" aria-hidden="true"></i>
 		</div>
-	</a>
+	</div>
+	<div class='right-align'>
+		<a href='/oddjob/newpost'>
+			<div class='new-job-button'>
+				+ New Job
+			</div>
+		</a>
+	</div>
 </div>
 <h1 style="color:red;">DUE TODAY</h1>
 {% if jobList %}
@@ -39,89 +45,5 @@
 {% endfor %}
 {% endblock %}
 
-<!-- <html>
-{% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'oddjob/style.css' %}">
-
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body style="background-color:#E8ECF2">
-	<div class='left-content'>
-		<div class='logo'></div>
-		<nav>
-			<ul>
-				<li id='selected-page'><a href="">Home</a></li>
-				<li><a href="/oddjob/mytasks">My Tasks</a></li>
-				<li><a href="/oddjob/me">User Performance</a></li>
-				<li><a href="">Company Performance</a></li>
-				<li><a href="/oddjob/me">Profile Settings</a></li>
-			</ul>
-		</nav>
-		<div>
-			<a href="/oddjob/login">login</a>
-			<a href="/oddjob/register">register</a>
-			<a href="/oddjob/logout">logout</a>
-		</div>
-	</div>
-	<div class='main-content'>
-		
-	</div>
-</body>
-
-</html> -->
-
 <style>
-	body {
-		margin: 0;
-		padding: 0;
-		font-size: 100%;
-	}
-
-	.left-content {
-		width: 20%;
-		float: left;
-		height: 100%;
-		background-color: white;
-	}
-
-	nav ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	nav li {
-		margin: 20px 20px;
-		padding: 10px 0;
-		border-radius: 5px;
-		align-content: center;
-		text-align: center;
-	}
-
-	nav li a {
-		color: #1A1A1A;
-		text-decoration: none;
-	}
-
-	nav li:hover {
-		background-color: #E8ECF2;
-	}
-
-	#selected-page {
-		color: white;
-		background-color: #1A1A1A;
-	}
-
-	#selected-page a {
-		color: white;
-		background-color: #1A1A1A;
-	}
-
-	.main-content {
-		float: left;
-		width: 80%;
-	}
 </style>
